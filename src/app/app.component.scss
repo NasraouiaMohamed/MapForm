@@ -1,0 +1,276 @@
+
+
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:100,300,400,600);
+@import url(http://weloveiconfonts.com/api/?family=brandico|entypo);
+
+/* entypo */
+[class*="entypo-"]:before {
+  font-family: 'monospace','Open Sans', sans-serif;
+  padding-right: 10px;
+}
+
+@mixin clearfix {
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+@mixin box-shadow($horizontal: 1px, $vertical: 1px, $blur: 2px, $color: rgba(0,0,0,0.5)) {
+  -webkit-box-shadow: $horizontal $vertical $blur $color;
+  -moz-box-shadow: $horizontal $vertical $blur $color;
+  box-shadow: $horizontal $vertical $blur $color;
+}
+
+$dkgray: #394141;
+$gray: #454f4f ;
+$ltgray: #8e9699;
+$seafoam: #7BC087;
+$green: #5FA269;
+$accent: #51B2D6;
+
+body {
+  font-family: 'monospace','Open Sans', sans-serif;
+  font-size: 100%;
+  // background: lighten($gray, 25%);
+}
+*, *:before, *:after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  border: 0;
+  padding-top: 10px;
+}
+
+ul {list-style:none;}
+a {
+  color: white; 
+  text-decoration: none;
+}
+
+#browser {
+  margin: 2% 5%;
+  color: white;
+  width: 90%;
+  @include box-shadow(2px, 5px, 15px);
+}
+#browser-bar {
+  background: $dkgray;
+  width: 100%;
+  padding: 8px;
+  margin: 0 auto;
+  font-weight: 300;
+  font-size: 1.5em;
+  position: relative;
+  p {text-align: center;}
+  .circles {
+    border-radius: 10px;
+    height: 13px;
+    width: 13px;
+    background: #ff3434 ;
+    float: left;
+    margin-left: 7px;
+    margin-top: 3px;
+    &:nth-of-type(2) {
+      background: #ffdd33 ;
+    }
+    &:nth-of-type(3) {
+      background: #67b678 ;
+    } 
+  }
+}
+.arrow {
+  position: absolute;
+  right: 3px;
+  top: 6px;
+  font-size: 1.2em;
+  color: $ltgray;
+}
+
+#content {
+  @include clearfix;
+  background: $gray;
+  #left, #right { 
+    height: 100%;
+  } 
+  #left {
+    float: left;
+    width:75%;
+    background: $seafoam;
+    @media all and (max-width: 780px) { 
+      width: 100%;
+    }
+    #map {
+      height: 388px;
+      position: relative;
+      p {
+        text-transform: uppercase;
+        padding-top: 20px;
+        padding-left: 30px;
+        font-size: 0.9em;
+        font-weight: 600;
+      }
+      .zoom {
+        position: absolute;
+        right: 25px;
+        top: 25px;
+        width: 2px;
+        height: 70px;
+        background: white;
+        &:before, 
+        &:after {
+          text-align: center;
+          font-weight: 600;
+          position: absolute;
+          color: $seafoam;
+          background: white;
+          width: 20px;
+        }
+        &:before {
+          content:'+';
+          top:-10px;
+          right: -8px;
+        }
+        &:after {
+          content:'-';
+          bottom: -10px;
+          right: -8px;
+        }
+      }
+      .map-locator {
+        position: absolute;
+        top: 40%;
+        left: 30%;
+        border-radius: 15px;
+        height: 30px;
+        width: 30px;
+        background: rgba(0,0,0,0.4);
+        border: solid 2px white;
+        &:before {
+          content: '';
+          position: absolute;
+          top: 9px;
+          left: 9px;
+          width: 8px;
+          height: 8px;
+          background: white;
+          border-radius: 5px;
+        }
+        .tooltip {
+          position: absolute;
+          color: $dkgray;
+          left: 50px;
+          top: -10px;
+          background: white;
+          font-size: 0.8em;
+          font-weight: 600;
+          @include box-shadow;
+          &:before {
+            content:'';
+            position: absolute;
+            left:-10px;
+            top: 14px;
+            border-right: solid white 10px;
+            border-top: solid transparent 8px;
+            border-bottom: solid transparent 8px;
+          }
+          [class*="entypo-"] {
+            min-width: 25px;
+            display: inline-block;
+            text-align: center;
+            border-right: solid thin #CCC;
+            margin-right: 5px;
+          }
+          li {
+            border-bottom: solid thin #CCC;
+            padding: 10px;
+            white-space: nowrap;
+            a { color: $accent;}
+            &:hover [class*="entypo-"] {color: $accent}
+          }
+        }
+      }
+    }
+    ul#location-bar {
+      width: 100%;
+      text-align: center;
+      display: table;
+      li {
+        display: table-cell;
+        padding: 15px;
+        background: $green;
+        border-right: solid thin lighten($green, 10%);
+        &:last-of-type {
+          border-right: 0;
+        }
+        &:hover {
+          background: darken($green, 10%);
+        }
+      }
+      .active { background: darken($green, 10%); }
+    }
+  }
+  
+  #right {
+    float: left;
+    width:25%;
+    background: $gray;
+    font-size: 1em;
+    padding: 15px;
+    @media all and (max-width: 780px) { 
+      width: 100%;
+    }
+    p {
+      margin-bottom: 10px; 
+      text-transform: uppercase;
+    }
+    a {
+      &:hover {color: $accent;}
+    }
+    #social {display: table; width: 100%;}
+    .social {
+      display: table-cell;
+      text-align: center;
+      
+    }
+    form {
+      border-top: solid thin $ltgray;
+      border-bottom: solid thin $ltgray;
+      margin: 20px 0;
+      padding: 20px 0;
+      input {
+        background: $dkgray;
+        padding: 8px;
+        margin-bottom: 8px;
+        width: 100%;
+        color: white;
+        &:last-of-type {margin-bottom: 0;}
+        &[type='submit'] {
+          text-transform: uppercase;
+          background: $seafoam;
+          width: 50%;
+          color: white;
+          margin-top: 5px;
+          &:hover {
+            background: darken($seafoam, 10%);
+            @include box-shadow;
+          }
+        }
+        &[type='number'] {
+          width: 115px;
+          margin-left: 20px;
+        }
+      } 
+    }//endofform
+    p.other {
+      font-size: 0.7;
+      margin-bottom: 5px;
+      text-transform: lowercase;
+      font-weight: 100;
+      &,
+      a {
+        color: $ltgray;
+      }
+    }
+  }
+}
